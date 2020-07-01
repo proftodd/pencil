@@ -19,5 +19,18 @@ namespace Pencil
             Paper paper = new Paper(text);
             Assert.AreEqual(text, paper.read());
         }
+
+        [Test]
+        public void can_write_text_to_paper()
+        {
+            string prevText = "Hello";
+            string newText = " there";
+            string finalText = prevText + newText;
+
+            Paper paper = new Paper(prevText);
+            paper.write(newText);
+
+            Assert.AreEqual(finalText, paper.read());
+        }
     }
 }

@@ -17,5 +17,10 @@ namespace Pencil
         {
             return text;
         }
+
+        public void write(string text)
+        {
+            this.text = this.text + text;
+        }
     }
 }
