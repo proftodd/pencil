@@ -5,14 +5,14 @@ namespace Pencil
     [TestFixture]
     public class PaperTest
     {
-        [Test]
+        [Test, Category("Creation")]
         public void can_create_blank_paper()
         {
             Paper paper = new Paper();
             Assert.AreEqual("", paper.read());
         }
 
-        [Test]
+        [Test, Category("Creation")]
         public void can_create_paper_with_text()
         {
             var text = "Hi there";
@@ -20,7 +20,7 @@ namespace Pencil
             Assert.AreEqual(text, paper.read());
         }
 
-        [Test]
+        [Test, Category("Write")]
         public void can_write_text_to_paper()
         {
             var prevText = "Hello";

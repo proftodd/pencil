@@ -6,7 +6,7 @@ namespace Pencil
     [TestFixture]
     public class PencilTest
     {
-        [Test]
+        [Test, Category("Creation")]
         public void pencil_created_with_no_parameters_has_default_durability()
         {
             var pencil = new Pencil();
@@ -14,7 +14,7 @@ namespace Pencil
             Assert.AreEqual(Pencil.DEFAULT_DURABILITY, pencil.durability);
         }
 
-        [Test]
+        [Test, Category("Creation")]
         public void pencil_created_with_durability_has_that_durability()
         {
             var durability = 42;
@@ -23,7 +23,7 @@ namespace Pencil
             Assert.AreEqual(durability, pencil.durability);
         }
 
-        [Test]
+        [Test, Category("Write")]
         public void can_write_to_paper()
         {
             var text = "Hi there";
@@ -33,7 +33,7 @@ namespace Pencil
             Assert.AreEqual(text, paper.read());
         }
 
-        [Test]
+        [Test, Category("Write")]
         public void can_append_text_to_paper()
         {
             var prevText = "She sells sea shells";
@@ -46,7 +46,7 @@ namespace Pencil
             Assert.AreEqual(prevText + newText, paper.read());
         }
 
-        [Test]
+        [Test, Category("Point Degradation")]
         public void whitespace_does_not_decrease_durability()
         {
             string text = $"all lowercase   with{'\n'}whitespace";
@@ -61,7 +61,7 @@ namespace Pencil
             Assert.AreEqual(Pencil.DEFAULT_DURABILITY - text.Length + numWhitespaceChars, pencil.durability);
         }
 
-        [Test]
+        [Test, Category("Point Degradation")]
         public void lowercase_characters_decrease_durability_by_one()
         {
             var text = "text";
@@ -74,7 +74,7 @@ namespace Pencil
             Assert.AreEqual(0, pencil.durability);
         }
 
-        [Test]
+        [Test, Category("Point Degradation")]
         public void uppercase_characters_decrease_durability_by_two()
         {
             var text = "Text";
@@ -88,7 +88,7 @@ namespace Pencil
             Assert.AreEqual(0, pencil.durability);
         }
 
-        [Test]
+        [Test, Category("Point Degradation")]
         public void handles_nonascii_unicode_characters()
         {
             var text = "\u00C6sop wrote f\u00E0bles";
