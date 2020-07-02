@@ -50,7 +50,7 @@ namespace Pencil
         public void whitespace_does_not_decrease_durability()
         {
             string text = $"all lowercase   with{'\n'}whitespace";
-            var wsQuery = from ch in text where ch == ' ' || ch == '\t' || ch == '\n' select ch;
+            var wsQuery = from ch in text where char.IsWhiteSpace(ch) select ch;
             var numWhitespaceChars = wsQuery.Count();
             var paper = new Paper();
             var pencil = new Pencil();

@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 namespace Pencil
@@ -14,22 +15,22 @@ namespace Pencil
             this.durability = durability;
         }
 
-        // NOTE: I am assuming only ASCII characters
+        // NOTE: I am assuming Unicode characters
         public void write(Paper paper, string text)
         {
             StringBuilder sb = new StringBuilder();
-            for (var i = 0; i < text.Length; ++i)
+            foreach (Char ch in text)
             {
-                if (text[i] == ' ' || text[i] == '\t' || text[i] == '\n')
+                if (Char.IsWhiteSpace(ch))
                 {
-                    sb.Append(text[i]);
+                    sb.Append(ch);
                 }
-                else if (text[i] >= 'A' && text[i] <= 'Z')
+                else if (Char.IsUpper(ch))
                 {
                     if (durability > 1)
                     {
                         durability = durability - 2;
-                        sb.Append(text[i]);
+                        sb.Append(ch);
                     } else {
                         sb.Append(' ');
                     }
@@ -38,7 +39,7 @@ namespace Pencil
                     if (durability > 0)
                     {
                         durability = durability - 1;
-                        sb.Append(text[i]);
+                        sb.Append(ch);
                     } else {
                         sb.Append(' ');
                     }
