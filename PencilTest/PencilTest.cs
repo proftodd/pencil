@@ -14,5 +14,18 @@ namespace Pencil
             pencil.write(paper, text);
             Assert.AreEqual(text, paper.read());
         }
+
+        [Test]
+        public void can_append_text_to_paper()
+        {
+            var prevText = "She sells sea shells";
+            var newText = " down by the seashore";
+            Paper paper = new Paper(prevText);
+            Pencil pencil = new Pencil();
+
+            pencil.write(paper, newText);
+
+            Assert.AreEqual(prevText + newText, paper.read());
+        }
     }
 }
