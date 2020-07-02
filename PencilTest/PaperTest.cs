@@ -32,5 +32,29 @@ namespace Pencil
 
             Assert.AreEqual(finalText, paper.read());
         }
+
+        [Test, Category("Sharpen")]
+        public void can_sharpen_pencil()
+        {
+            var pencil = new Pencil();
+
+            pencil.write(new Paper(), "some text");
+            pencil.sharpen();
+
+            Assert.AreEqual(pencil.originalDurability, pencil.durability);
+        }
+
+        [Test, Category("Sharpen")]
+        public void sharpening_shortens_length()
+        {
+            var originalLength = 5;
+            var newLength = 4;
+            var pencil = new Pencil(Pencil.DEFAULT_DURABILITY, originalLength);
+
+            pencil.write(new Paper(), "some text");
+            pencil.sharpen();
+
+            Assert.AreEqual(newLength, pencil.length);
+        }
     }
 }

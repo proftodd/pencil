@@ -5,14 +5,22 @@ namespace Pencil
 {
     public class Pencil
     {
+        public static readonly int DEFAULT_LENGTH = 10;
         public static readonly int DEFAULT_DURABILITY = 40_000;
+
+        public int originalDurability { get; }
         public int durability { private set; get; }
+        public int length { private set; get; }
 
-        public Pencil() : this(DEFAULT_DURABILITY) {}
+        public Pencil() : this(DEFAULT_DURABILITY, DEFAULT_LENGTH) {}
 
-        public Pencil(int durability)
+        public Pencil(int durability) : this(durability, DEFAULT_LENGTH) {}
+
+        public Pencil(int durability, int length)
         {
+            this.originalDurability = durability;
             this.durability = durability;
+            this.length = length;
         }
 
         // NOTE: I am assuming Unicode characters
@@ -46,6 +54,12 @@ namespace Pencil
                 }
             }
             paper.write(sb.ToString());
+        }
+
+        public void sharpen()
+        {
+            durability = originalDurability;
+            --length;
         }
     }
 }
