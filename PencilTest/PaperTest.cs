@@ -56,5 +56,16 @@ namespace Pencil
 
             Assert.AreEqual(newLength, pencil.length);
         }
+
+        [Test, Category("Sharpen")]
+        public void if_length_is_zero_cannot_sharpen()
+        {
+            var pencil = new Pencil(Pencil.DEFAULT_DURABILITY, 0);
+
+            pencil.write(new Paper(), "some text");
+            pencil.sharpen();
+
+            Assert.AreNotEqual(pencil.durability, pencil.originalDurability);
+        }
     }
 }

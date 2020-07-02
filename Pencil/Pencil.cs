@@ -58,8 +58,11 @@ namespace Pencil
 
         public void sharpen()
         {
-            durability = originalDurability;
-            --length;
+            if (length > 0)
+            {
+                durability = originalDurability;
+                --length;
+            }
         }
     }
 }
