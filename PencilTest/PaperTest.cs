@@ -15,7 +15,7 @@ namespace Pencil
         [Test]
         public void can_create_paper_with_text()
         {
-            string text = "Hi there";
+            var text = "Hi there";
             Paper paper = new Paper(text);
             Assert.AreEqual(text, paper.read());
         }
@@ -23,9 +23,9 @@ namespace Pencil
         [Test]
         public void can_write_text_to_paper()
         {
-            string prevText = "Hello";
-            string newText = " there";
-            string finalText = prevText + newText;
+            var prevText = "Hello";
+            var newText = " there";
+            var finalText = prevText + newText;
 
             Paper paper = new Paper(prevText);
             paper.write(newText);
