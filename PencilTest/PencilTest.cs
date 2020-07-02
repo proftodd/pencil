@@ -87,5 +87,18 @@ namespace Pencil
             Assert.AreEqual(expectedText, paper.read());
             Assert.AreEqual(0, pencil.durability);
         }
+
+        [Test]
+        public void handles_nonascii_unicode_characters()
+        {
+            var text = "\u00C6sop wrote f\u00E0bles";
+            var paper = new Paper();
+            var pencil = new Pencil(20);
+
+            pencil.write(paper, text);
+
+            Assert.AreEqual(text, paper.read());
+            Assert.AreEqual(4, pencil.durability);
+        }
     }
 }
