@@ -135,5 +135,35 @@ namespace Pencil
 
             Assert.AreNotEqual(pencil.durability, pencil.originalDurability);
         }
+
+        [Test, Category("Erase")]
+        public void it_erases_last_instance_of_string_on_paper()
+        {
+            var prevText = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
+            var firstNewText = "How much wood would a woodchuck chuck if a woodchuck could       wood?";
+            var secondNewText = "How much wood would a woodchuck chuck if a wood      could       wood?";
+
+            var paper = new Paper(prevText);
+            var pencil = new Pencil();
+
+            pencil.erase(paper, "chuck");
+            Assert.AreEqual(firstNewText, paper.read());
+
+            pencil.erase(paper, "chuck");
+            Assert.AreEqual(secondNewText, paper.read());
+        }
+
+        [Test, Category("Erase")]
+        public void it_does_nothing_if_text_not_found_on_paper()
+        {
+            var text = "How much wood would a woodchuck chuck if a woodchuck could chuck wood?";
+
+            var paper = new Paper(text);
+            var pencil = new Pencil();
+
+            pencil.erase(paper, "hoohah");
+
+            Assert.AreEqual(text, paper.read());
+        }
     }
 }

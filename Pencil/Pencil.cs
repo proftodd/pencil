@@ -60,5 +60,16 @@ namespace Pencil
                 --length;
             }
         }
+
+        public void erase(Paper paper, string text)
+        {
+            int found = paper.read().LastIndexOf(text);
+            if (found > 0)
+            {
+                for (int i = 0; i < text.Length; ++i) {
+                    paper.erase(i + found);
+                }
+            }
+        }
     }
 }
