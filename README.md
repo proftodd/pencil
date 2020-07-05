@@ -1,6 +1,13 @@
 # Pencil Durability Kata
 The purpose of the Pencil Durability Kata is to write code to simulate, first coarsely and then more faithfully, an ordinary graphite pencil. It includes writing and editing text, point degradation, using the eraser, and sharpening the pencil. The point of this kata is to provide a larger-than-trivial exercise that can be used to practice TDD. A significant portion of the effort will be in determining which tests should be written and, more importantly, written next.
 
+## Building and Testing
+This project was implemented with .NET Core using NUnit for tests.
+```
+$ dotnet build
+$ dotnet test
+```
+
 ## Write
 *As a writer  
 I want to be able use a pencil to write text on a sheet of paper  
