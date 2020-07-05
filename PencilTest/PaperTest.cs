@@ -33,6 +33,32 @@ namespace Pencil
             Assert.AreEqual(finalText, paper.read());
         }
 
+        [Test, Category("Write")]
+        public void can_write_at_arbitrary_position_in_text()
+        {
+            var prevText = "An       a day keeps the doctor away";
+            var insertText = "onion";
+            var finalText = $"An {insertText} a day keeps the doctor away";
+
+            var paper = new Paper(prevText);
+            paper.write(insertText, position: 3);
+
+            Assert.AreEqual(finalText, paper.read());
+        }
+
+        [Test, Category("Write")]
+        public void cannot_overwrite_existing_characters()
+        {
+            var prevText = "An       a day keeps the doctor away";
+            var insertText = "artichoke";
+            var finalText = "An artich@k@ay keeps the doctor away";
+
+            var paper = new Paper(prevText);
+            paper.write(insertText, position: 3);
+
+            Assert.AreEqual(finalText, paper.read());
+        }
+
         [Test, Category("Erase")]
         public void can_erase_characters()
         {
