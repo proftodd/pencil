@@ -59,6 +59,27 @@ namespace Pencil
             Assert.AreEqual(finalText, paper.read());
         }
 
+        [Test, Category("Write")]
+        public void writing_before_start_of_paper_does_nothing()
+        {
+            var text = "hello";
+
+            var paper = new Paper(text);
+            paper.write(text, position: -1);
+
+            Assert.AreEqual(text, paper.read());
+        }
+
+        [Test, Category("Write")]
+        public void writing_after_end_of_text_adds_whitespace_and_new_text()
+        {
+            var text = "hello";
+
+            var paper = new Paper(text);
+            paper.write("there", position: 6);
+
+            Assert.AreEqual("hello there", paper.read());
+        }
         [Test, Category("Erase")]
         public void can_erase_characters()
         {

@@ -26,18 +26,29 @@ namespace Pencil
 
         public void write(string text, int position)
         {
-            var builder = new StringBuilder(this.text);
-            for (int i = 0; i < text.Length; ++i)
+            if (position < 0)
             {
-                if (position + i >= builder.Length)
+                return;
+            }
+            var builder = new StringBuilder(this.text);
+            for (int i = 0; i < text.Length; )
+            {
+                if (position + i > builder.Length)
+                {
+                    builder.Append(' ');
+                }
+                else if (position + i == builder.Length)
                 {
                     builder.Append(text[i]);
+                    ++i;
                 }
                 else if (Char.IsWhiteSpace(builder[position + i]))
                 {
                     builder[position + i] = text[i];
+                    ++i;
                 } else {
                     builder[position + i] = '@';
+                    ++i;
                 }
             }
             this.text = builder.ToString();
