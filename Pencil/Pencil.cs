@@ -5,6 +5,7 @@ namespace Pencil
 {
     public class Pencil
     {
+        public const int DEFAULT_ERASER = 10_000;
         public const int DEFAULT_LENGTH = 10;
         public const int DEFAULT_DURABILITY = 40_000;
 
@@ -12,11 +13,14 @@ namespace Pencil
         public int durability { private set; get; }
         public int length { private set; get; }
 
-        public Pencil(int durability = DEFAULT_DURABILITY, int length = 10)
+        public int eraser { private set; get; }
+
+        public Pencil(int durability = DEFAULT_DURABILITY, int length = 10, int eraser = DEFAULT_ERASER)
         {
             this.originalDurability = durability;
             this.durability = durability;
             this.length = length;
+            this.eraser = eraser;
         }
 
         // NOTE: I am assuming Unicode characters
@@ -67,7 +71,11 @@ namespace Pencil
             if (found > 0)
             {
                 for (int i = 0; i < text.Length; ++i) {
-                    paper.erase(i + found);
+                    if (!Char.IsWhiteSpace(text[i]))
+                    {
+                        paper.erase(i + found);
+                        --eraser;
+                    }
                 }
             }
         }

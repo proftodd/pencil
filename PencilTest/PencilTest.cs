@@ -165,5 +165,29 @@ namespace Pencil
 
             Assert.AreEqual(text, paper.read());
         }
+
+        [Test, Category("Erase")]
+        public void erasing_decreases_eraser_durability()
+        {
+            var paper = new Paper("some text");
+            var pencil = new Pencil();
+            var originalEraser = pencil.eraser;
+
+            pencil.erase(paper, "text");
+
+            Assert.IsTrue(pencil.eraser < originalEraser);
+        }
+
+        [Test, Category("Erase")]
+        public void erasing_whitespace_does_not_decrease_eraser_durability()
+        {
+            var paper = new Paper("some text");
+            var pencil = new Pencil();
+            var originalEraser = pencil.eraser;
+
+            pencil.erase(paper, " ");
+
+            Assert.AreEqual(pencil.eraser, originalEraser);
+        }
     }
 }
