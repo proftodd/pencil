@@ -26,6 +26,11 @@ namespace Pencil
         // NOTE: I am assuming Unicode characters
         public void write(Paper paper, string text)
         {
+            write(paper, text, paper.read().Length);
+        }
+
+        public void write(Paper paper, string text, int position)
+        {
             StringBuilder sb = new StringBuilder();
             foreach (Char ch in text)
             {
@@ -53,7 +58,7 @@ namespace Pencil
                     }
                 }
             }
-            paper.write(sb.ToString());
+            paper.write(sb.ToString(), position);
         }
 
         public void sharpen()

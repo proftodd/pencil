@@ -46,6 +46,20 @@ namespace Pencil
             Assert.AreEqual(prevText + newText, paper.read());
         }
 
+        [Test, Category("Write")]
+        public void can_insert_text_to_paper()
+        {
+            var prevText = "An       a day keeps the doctor away";
+            var insertText = "apple";
+            var newText = $"An {insertText} a day keeps the doctor away";
+
+            var paper = new Paper(prevText);
+            var pencil = new Pencil();
+            pencil.write(paper, insertText, 3);
+
+            Assert.AreEqual(newText, paper.read());
+        }
+
         [Test, Category("Point Degradation")]
         public void whitespace_does_not_decrease_durability()
         {
