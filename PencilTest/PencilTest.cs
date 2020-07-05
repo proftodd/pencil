@@ -189,5 +189,16 @@ namespace Pencil
 
             Assert.AreEqual(pencil.eraser, originalEraser);
         }
+
+        [Test, Category("Erase")]
+        public void cannot_erase_if_eraser_durability_is_exhausted()
+        {
+            var paper = new Paper("Buffalo Bill");
+            var pencil = new Pencil(eraser: 3);
+
+            pencil.erase(paper, "Bill");
+
+            Assert.AreEqual("Buffalo B   ", paper.read());
+        }
     }
 }

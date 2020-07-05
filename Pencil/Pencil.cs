@@ -70,8 +70,8 @@ namespace Pencil
             int found = paper.read().LastIndexOf(text);
             if (found > 0)
             {
-                for (int i = 0; i < text.Length; ++i) {
-                    if (!Char.IsWhiteSpace(text[i]))
+                for (int i = text.Length - 1; i >= 0; --i) {
+                    if (!Char.IsWhiteSpace(text[i]) && eraser > 0)
                     {
                         paper.erase(i + found);
                         --eraser;
